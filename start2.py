@@ -60,6 +60,7 @@ while count != 3:
 		    ledRouge.status(LED_ON)
 #while count != 3:
 #os.systen("shutdown -h now")"""
+main()
 
 
 
