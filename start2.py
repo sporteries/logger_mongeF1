@@ -25,6 +25,7 @@ def record_camera():
     elif record == 1:
         #camera.wait_recording(240)
         print("stop recording")
+        print(dir(camera))
         camera.stop_recording()
         record = -1
 
