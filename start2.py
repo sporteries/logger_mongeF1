@@ -18,7 +18,7 @@ def record_camera():
         camera.stop_recording()
 
 def main():
-    bouton1 = Bouton(23, [record_camera])
+    bouton1 = Bouton(23, record_camera)
     while 1:
         pass
 
