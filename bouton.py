@@ -11,10 +11,10 @@ class Bouton:
     type = GPIO.IN
     falling = 0
     rising = 0
-    func = []
-    args = []
+    func = None
+    args = ()
     
-    def __init__(self, channel, func = [], mode = GPIO.FALLING, args  = []):
+    def __init__(self, channel, func = None, mode = GPIO.FALLING, args  = ()):
         self.channel = channel
         self.setFunc(func, args)
         if self.channel > -1:
@@ -22,10 +22,10 @@ class Bouton:
             GPIO.add_event_detect(self.channel, mode, self.execEvent)
 
     def execEvent(self, channel):
-        for i, func in enumerate(self.func):
-            func(*self.args[i])
+        if func is not None:
+            func(*self.args) 
                 
-    def setFunc(self, func, args = [()]):
+    def setFunc(self, func, args):
         self.func = func
         self.args = args
     
