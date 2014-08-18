@@ -2,11 +2,6 @@
 import RPi.GPIO as GPIO
 from threading import Timer as Timer
 
-
-#initialisation GPIO
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-
 LED_ON = 1
 LED_OFF = 0
 LED_BLINK = 2
