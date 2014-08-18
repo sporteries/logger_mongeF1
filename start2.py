@@ -11,13 +11,16 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 record = 0 # 0 : init, 1 : record, -1 : end
+camera = None
+
 def record_camera():
     global record
+    global camera
     if record == 0:
-        with picamera.PiCamera() as camera:
-            camera.resolution = (640, 480)
-            camera.start_recording('/home/pi/video.h264')
-            record = 1
+        camera =  picamera.PiCamera()
+        camera.resolution = (640, 480)
+        camera.start_recording('/home/pi/video.h264')
+        record = 1
     elif record == 1:
         #camera.wait_recording(240)
         camera.stop_recording()
