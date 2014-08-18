@@ -12,6 +12,7 @@ GPIO.setmode(GPIO.BCM)
 def main():
     camera = Camera("/home/pi/video.h264", wait = 10)
     camera.record()
+    print("record")
 
     """capteur = gpsCapteur()
     file = None
