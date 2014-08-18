@@ -22,8 +22,8 @@ class Bouton:
             GPIO.add_event_detect(self.channel, mode, self.execEvent)
 
     def execEvent(self, channel):
-        if func is not None:
-            func(*self.args) 
+        if self.func is not None:
+            self.func(*self.args) 
                 
     def setFunc(self, func, args):
         self.func = func
