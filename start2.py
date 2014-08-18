@@ -4,6 +4,7 @@ from time import *
 from led import Led
 from bouton import Bouton
 from camera import Camera
+import picamera
 
 #initialisation GPIO
 GPIO.setwarnings(False)
