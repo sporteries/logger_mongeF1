@@ -22,7 +22,7 @@ class Bouton:
             GPIO.add_event_detect(self.channel, mode, self.execEvent)
 
     def execEvent(self, channel):
-	for i, func in enumerate(self.func):
+        for i, func in enumerate(self.func):
             func(*self.args[i])
                 
     def setFunc(func, args = [()]):
