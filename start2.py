@@ -21,7 +21,7 @@ def record_camera():
         print("start recording")
         camera =  picamera.PiCamera()
         camera.resolution = (640, 480)
-        camera.start_recording(strftime('/home/pi/video_%H:%m.h264'))
+        camera.start_recording(strftime('/home/pi/video_%H:%M:%S.h264'))
         record = True
     else:
         print("stop recording")
