@@ -12,6 +12,7 @@ GPIO.setmode(GPIO.BCM)
 
 isRecord = False
 def record_camera():
+    global isRecord
     if not isRecord:
         with picamera.PiCamera() as camera:
             camera.resolution = (640, 480)
