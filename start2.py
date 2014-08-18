@@ -5,6 +5,7 @@ from led import Led
 from bouton import Bouton
 from camera import Camera
 import picamera
+from time import strftime
 
 #initialisation GPIO
 GPIO.setwarnings(False)
@@ -20,7 +21,7 @@ def record_camera():
         print("start recording")
         camera =  picamera.PiCamera()
         camera.resolution = (640, 480)
-        camera.start_recording('/home/pi/video.h264')
+        camera.start_recording(strftime('/home/pi/video_%H:%m.h264'))
         record = True
     else:
         print("stop recording")
