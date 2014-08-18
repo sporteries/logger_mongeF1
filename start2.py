@@ -10,6 +10,7 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 def main():
+    print("create camera")
     camera = Camera("/home/pi/video.h264", wait = 10)
     camera.record()
     print("record")
