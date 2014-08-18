@@ -25,7 +25,7 @@ class Bouton:
         for i, func in enumerate(self.func):
             func(*self.args[i])
                 
-    def setFunc(func, args = [()]):
+    def setFunc(self, func, args = [()]):
         self.func = func
         self.args = args
     
