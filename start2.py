@@ -19,6 +19,8 @@ def record_camera():
 
 def main():
     bouton1 = Bouton(23, [record_camera])
+    while 1:
+        pass
 
 
     """capteur = gpsCapteur()
