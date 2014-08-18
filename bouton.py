@@ -1,15 +1,11 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 
-#initialisation GPIO
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-
 BOUTON_RISING = 0
 BOUTON_FALLING = 1
 BOUTON_BOTH = 2
 
-class bouton:
+class Bouton:
     channel = -1
     etat = -1
     type = GPIO.IN
