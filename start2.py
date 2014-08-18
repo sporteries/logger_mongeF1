@@ -17,12 +17,14 @@ def record_camera():
     global record
     global camera
     if record == 0:
+        print("start recording")
         camera =  picamera.PiCamera()
         camera.resolution = (640, 480)
         camera.start_recording('/home/pi/video.h264')
         record = 1
     elif record == 1:
         #camera.wait_recording(240)
+        print("stop recording")
         camera.stop_recording()
         record = -1
 
