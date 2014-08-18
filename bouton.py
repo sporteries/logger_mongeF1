@@ -14,7 +14,7 @@ class Bouton:
     func = None
     args = ()
     
-    def __init__(self, channel, func = None, mode = GPIO.FALLING, args  = ()):
+    def __init__(self, channel, func = None, mode = GPIO.FALLING, args = ()):
         self.channel = channel
         self.setFunc(func, args)
         if self.channel > -1:
