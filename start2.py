@@ -11,9 +11,11 @@ GPIO.setmode(GPIO.BCM)
 
 def main():
     print("create camera")
-    with Camera("/home/pi/video.h264", wait = 10) as camera:
-        camera.record()
-        print("record")
+    with picamera.PiCamera() as camera:
+        camera.resolution = (640, 480)
+        camera.start_recording('/home/pi/video.h264')
+        camera.wait_recording(240)
+        camera.stop_recording()
 
     """capteur = gpsCapteur()
     file = None
