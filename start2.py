@@ -6,6 +6,7 @@ from bouton import Bouton
 from camera import Camera
 import picamera
 from time import strftime
+from gyroscope import mpu6050
 
 #initialisation GPIO
 GPIO.setwarnings(False)
@@ -31,6 +32,8 @@ def record_camera():
 
 def main():
     bouton1 = Bouton(23, record_camera)
+    gyro = mpu6050(0x68)
+    print(gyro.get_gyro_out(), "\n\n", gyro.get_accel_out(), "\n\n", gyro.get_rotation_x_y())
     while 1:
         pass
 
