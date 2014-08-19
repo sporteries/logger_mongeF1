@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from __future__ import print_function
 import RPi.GPIO as GPIO
 from time import *
 from led import Led
@@ -7,7 +8,6 @@ from camera import Camera
 import picamera
 from time import strftime
 from gyroscope import mpu6050
-from __future__ import print_function
 
 #initialisation GPIO
 GPIO.setwarnings(False)
