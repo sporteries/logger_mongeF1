@@ -19,6 +19,7 @@ camera = None
 def record_camera():
     global record
     global camera
+    print("call record_camera")
     if not record:
         print("start recording")
         camera =  picamera.PiCamera()
