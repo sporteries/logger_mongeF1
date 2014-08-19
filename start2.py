@@ -33,9 +33,8 @@ def record_camera():
 def main():
     bouton1 = Bouton(23, record_camera)
     gyro = mpu6050(0x69)
-    print(gyro.get_gyro_out(), "\n\n", gyro.get_accel_out(), "\n\n", gyro.get_rotation_x_y())
     while 1:
-        pass
+        print(gyro.get_gyro_out(), "\n\n", gyro.get_accel_out(), "\n\n", gyro.get_rotation_x_y())
 
 
     """capteur = gpsCapteur()
