@@ -54,13 +54,13 @@ class mpu6050:
         gyro_xout = self.read_word_2c(GYRO_XOUT)
         gyro_yout = self.read_word_2c(GYRO_YOUT)
         gyro_zout = self.read_word_2c(GYRO_ZOUT)
-        return (gyro_xout / 131, gyro_yout / 131, gyro_zout / 131)
+        return (gyro_xout / 131., gyro_yout / 131., gyro_zout / 131.)
 
     def get_accel_out(self):
         accel_xout = self.read_word_2c(ACCEL_XOUT)
         accel_yout = self.read_word_2c(ACCEL_YOUT)
         accel_zout = self.read_word_2c(ACCEL_ZOUT)
-        return (accel_xout, accel_yout, accel_zout, accel_xout / 16384, accel_yout / 16384, accel_zout / 16384)
+        return (accel_xout, accel_yout, accel_zout, accel_xout / 16384., accel_yout / 16384., accel_zout / 16384.)
 
     def get_rotation_x_y(self):
         accel = self.get_accel_out()

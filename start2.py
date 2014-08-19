@@ -7,6 +7,7 @@ from camera import Camera
 import picamera
 from time import strftime
 from gyroscope import mpu6050
+from __future__ import print_function
 
 #initialisation GPIO
 GPIO.setwarnings(False)
