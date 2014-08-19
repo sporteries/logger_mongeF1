@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from __future__ import print_function
+#from __future__ import print_function
 import RPi.GPIO as GPIO
 from time import *
 from led import Led
@@ -7,7 +7,7 @@ from bouton import Bouton
 from camera import Camera
 import picamera
 from time import strftime
-from gyroscope import mpu6050
+#from gyroscope import mpu6050
 
 #initialisation GPIO
 GPIO.setwarnings(False)
@@ -33,7 +33,7 @@ def record_camera():
 
 def main():
     bouton1 = Bouton(23, record_camera)
-    gyro = mpu6050(0x69)
+    #gyro = mpu6050(0x69)
     while 1:
         pass#print(gyro.get_gyro_out(), "\t", gyro.get_accel_out(), "\t", gyro.get_rotation_x_y())
 
