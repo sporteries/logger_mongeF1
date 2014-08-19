@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from __future__ import *
+from __future__ import print_function
 import RPi.GPIO as GPIO
 from time import *
 from led import Led
