@@ -9,6 +9,9 @@ ACCEL_XOUT = 0x3b
 ACCEL_YOUT = 0x3d
 ACCEL_ZOUT = 0x3f
 
+power_mgmt_1 = 0x6b
+power_mgmt_2 = 0x6c
+
 class mpu6050:
     power_mgmt_1 = 0x6b
     power_mgmt_2 = 0x6c
@@ -18,6 +21,7 @@ class mpu6050:
     def __init__(self, address):
         self.address = address
         self.bus = smbus.SMBus(1)
+        self.bus.write_byte_data(self.address, power_mgmt_1, 1)
 
     def read_byte(self, adr):
         return self.bus.read_byte_data(self.address, adr)
