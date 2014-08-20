@@ -61,7 +61,7 @@ def record_data():
         record_gps()
         record_gyro()
         record = True
-    else
+    else:
         File.close()
 
 def write_data():
