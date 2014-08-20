@@ -55,7 +55,7 @@ def record_gyro():
     else:
         recordGyro = False
 
-def record_data(data):
+def record_data():
     global data
     global record
     print(data, id(data))
