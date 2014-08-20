@@ -67,70 +67,21 @@ def record_data(data):
         data.close()
 
 def write_data():
-    data = open("/home/pi/gyro_gps_data.txt", "w")
+    global data
     if recordGps:
         pass
     if recordGyro:
         if data is not None:
             print(data, id(data))
             data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
-    data.close()
 def main():
     global data
-    """data = open("/home/pi/gyro_gps_data.txt", "w")"""
+    data = open("/home/pi/gyro_gps_data.txt", "w")
     bouton1 = Bouton(23, record_data, args = (data))
     print(data, id(data))
     while 1:
         write_data()
 
-
-    """capteur = gpsCapteur()
-    file = None
-    count = 0
-
-def call():
-    global count
-    global file
-    count += 1
-    if count == 1:
-    ledVerte.status(LED_OFF)
-    ledRouge.status(LED_ON)
-#   file = open("gpsdata.txt", "a")
-    with picamera.PiCamera() as camera:
-        camera.resolution = (640, 480)
-        camera.start_recording('/home/pi/video.h264')
-        camera.wait_recording(240)
-        camera.stop_recording()
-    if count == 2:
-    ledRouge.status(LED_OFF)
-    ledVerte.status(LED_ON)
-#   file.close()
-    count = 0
-
-def stop():
-    global count
-    if count == 0:
-        count = 3
-    ledVerte.status(LED_OFF)
-
-
-boutonStart = bouton(23, [call])
-boutonExit = bouton(18, [stop])
-ledVerte.status(LED_ON)
-
-while count != 3:
-#     dict = capteur.getValues()
-#     if dict["longitude"] != 0.:
-#        if file is not None:
-#           if not file.closed:
-#                    for i in dict:
-#                   file.write(str(dict[i]).replace(".", ",") + ";")
-#                    file.write("\n")
-            ledRouge.status(LED_OFF)
-            time.sleep(.2)
-            ledRouge.status(LED_ON)
-#while count != 3:
-#os.systen("shutdown -h now")"""
 main()
 
 
