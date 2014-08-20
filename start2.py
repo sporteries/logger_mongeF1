@@ -89,11 +89,11 @@ def write_data():
 
 def main():
     global data
-    #ledverte.on()
+    ledverte.on()
+    sleep(1000)
     data = open("/home/pi/gyro_gps_data.txt", "w")
     bouton1 = Bouton(23, record_data)
-    print(data, id(data))
-    #ledverte.off()
+    ledverte.off()
     ledrouge.on()
     while 1:
         if not write_data():
