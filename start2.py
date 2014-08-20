@@ -67,6 +67,9 @@ def record_data():
         record_gyro()
         record = True
     else:
+        record_camera()
+        record_gps()
+        record_gyro()
         data.close()
 
 def write_data():
