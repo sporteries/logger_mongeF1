@@ -23,19 +23,20 @@ class Led:
             GPIO.setup(self.channel, self.type)
             self.status(LED_OFF)
 
-    def status(self, etat):
+    def _status(self, etat):
         if etat == LED_ON:
             self.on()
         if etat == LED_OFF:
-            self.off()
+            self.off(stopblink = False)
 
     def on(self):
         self.etat == LED_ON
         GPIO.output(self.channel, GPIO.HIGH)
 
-    def off(self):
+    def off(self, stopblink = True):
         self.etat == LED_OFF
-        self.stop_blink()
+        if stopblink:
+            self.stop_blink()
         GPIO.output(self.channel, GPIO.LOW)
 
     def blink(self, time, iterBlink):
@@ -51,7 +52,7 @@ class Led:
 
     def blink_thread(self, time):
         self.etat = not self.etat
-        self.status(self.etat)
+        self._status(self.etat)
         self.repeat_blink(time)
 
     def repeat_blink(self, time):
