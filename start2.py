@@ -57,6 +57,7 @@ def record_gyro():
 
 def record_data():
     global record
+    global File
     if not record:
         record_camera()
         record_gps()
