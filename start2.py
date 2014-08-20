@@ -1,42 +1,68 @@
 #!/usr/bin/python
 #from __future__ import print_function
 import RPi.GPIO as GPIO
-from time import *
 from led import Led
 from bouton import Bouton
 from camera import Camera
 import picamera
 from time import strftime
-#from gyroscope import mpu6050
+from gyroscope import mpu6050
+from gps import
 
 #initialisation GPIO
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-record = False
+recordCamera = False
 camera = None
+recordGps = False
+gps = None
+recordGyro = False
+gyro = None
+File = None
 
 def record_camera():
-    global record
-    global camera
-    print("call record_camera")
-    if not record:
+    if not recordCamera:
         print("start recording")
         camera =  picamera.PiCamera()
         camera.resolution = (640, 480)
         camera.start_recording(strftime('/home/pi/video_%H:%M:%S.h264'))
-        record = True
+        recordCamera = True
     else:
         print("stop recording")
         camera.stop_recording()
         camera.close()
-        record = False
+        recordCamera = False
 
+def record_gps():
+    if not recordGps:
+        rercodGps = True
+    else:
+        recordGps = False
+
+def record_gyro():
+    if not recordGyro:
+        gyro = mpu6050(0x69)
+        recordGyro = True
+    else:
+        recordGyro = False
+
+def record_data():
+    record_camera()
+    record_gps()
+    record_gyro()
+
+def write_data():
+    if recordGps:
+        pass
+    if recordGyro:
+        if File is not None:
+            File.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
 def main():
-    bouton1 = Bouton(23, record_camera)
-    #gyro = mpu6050(0x69)
+    bouton1 = Bouton(23, record_data)
+    File = open("/home/pi/gyro_gps_data.txt", "w")
     while 1:
-        pass#print(gyro.get_gyro_out(), "\t", gyro.get_accel_out(), "\t", gyro.get_rotation_x_y())
+        write_data()
 
 
     """capteur = gpsCapteur()
