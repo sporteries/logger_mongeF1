@@ -92,7 +92,7 @@ def write_data():
 def main():
     global data
     ledverte.on()
-    sleep(1000)
+    sleep(5)
     data = open("/home/pi/gyro_gps_data.txt", "w")
     bouton1 = Bouton(23, record_data)
     ledverte.off()
