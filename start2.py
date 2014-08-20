@@ -6,7 +6,9 @@ from bouton import Bouton
 from camera import Camera
 import picamera
 from time import strftime
+from time import sleep
 from gyroscope import mpu6050
+
 #from gps import
 
 #initialisation GPIO
