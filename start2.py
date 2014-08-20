@@ -21,6 +21,8 @@ recordGyro = False
 gyro = None
 data = None
 record = False
+ledrouge = Led(17)
+ledverte = Led(27)
 
 def record_camera():
     pass
@@ -69,19 +71,31 @@ def record_data():
 
 def write_data():
     global data
+    global recordGps
+    global recordGyro
     if recordGps:
         pass
     if recordGyro:
         if data is not None:
             print(data, id(data))
             data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
+    if not recordGps and not recordGyro:
+        return False
+    return True
+
 def main():
     global data
+    ledverte.on()
     data = open("/home/pi/gyro_gps_data.txt", "w")
     bouton1 = Bouton(23, record_data)
     print(data, id(data))
+    ledverte.off()
+    ledrouge.blink(1,-1)
     while 1:
-        write_data()
+        if not write_data():
+            break
+    ledrouge.off()
+    ledverte.on()
 
 main()
 
