@@ -81,7 +81,7 @@ def write_data():
         pass
     if recordGyro:
         if data is not None:
-            print(data, id(data))
+            print("record gyro",data, id(data))
             data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
     if not recordGps and not recordGyro and record:
         return False
