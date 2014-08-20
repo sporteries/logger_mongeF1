@@ -94,7 +94,7 @@ def main():
     bouton1 = Bouton(23, record_data)
     print(data, id(data))
     #ledverte.off()
-    ledrouge.blink(1,-1)
+    ledrouge.on()
     while 1:
         if not write_data():
             break
