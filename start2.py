@@ -77,7 +77,7 @@ def write_data():
 def main():
     global data
     data = open("/home/pi/gyro_gps_data.txt", "w")
-    bouton1 = Bouton(23, record_data, args = (data))
+    bouton1 = Bouton(23, record_data)
     print(data, id(data))
     while 1:
         write_data()
