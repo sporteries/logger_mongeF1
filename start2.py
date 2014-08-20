@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #from __future__ import print_function
 import RPi.GPIO as GPIO
-from led import Led
+#from led import Led
 from bouton import Bouton
 from camera import Camera
 import picamera
@@ -21,8 +21,8 @@ recordGyro = False
 gyro = None
 data = None
 record = False
-ledrouge = Led(17)
-ledverte = Led(27)
+#ledrouge = Led(17)
+#ledverte = Led(27)
 
 def record_camera():
     pass
@@ -88,17 +88,17 @@ def write_data():
 
 def main():
     global data
-    ledverte.on()
+    #ledverte.on()
     data = open("/home/pi/gyro_gps_data.txt", "w")
     bouton1 = Bouton(23, record_data)
     print(data, id(data))
-    ledverte.off()
-    ledrouge.blink(1,-1)
+    #ledverte.off()
+    #ledrouge.blink(1,-1)
     while 1:
         if not write_data():
             break
-    ledrouge.off()
-    ledverte.on()
+    #ledrouge.off()
+    #ledverte.on()
 
 main()
 
