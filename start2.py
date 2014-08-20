@@ -8,6 +8,7 @@ import picamera
 from time import strftime
 from time import sleep
 from gyroscope import mpu6050
+import os
 
 #from gps import
 
@@ -100,8 +101,10 @@ def main():
     while 1:
         if not write_data():
             break
+            sleep(0.1)
     ledrouge.off()
     ledverte.on()
+    os.systen("shutdown -h now")
 
 main()
 
