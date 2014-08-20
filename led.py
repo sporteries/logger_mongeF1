@@ -21,7 +21,7 @@ class Led:
         self.channel = channel
         if self.channel > -1:
             GPIO.setup(self.channel, self.type)
-            self.status(LED_OFF)
+            self._status(LED_OFF)
 
     def _status(self, etat):
         if etat == LED_ON:
