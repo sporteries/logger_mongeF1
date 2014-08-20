@@ -7,7 +7,7 @@ from camera import Camera
 import picamera
 from time import strftime
 from gyroscope import mpu6050
-from gps import
+#from gps import
 
 #initialisation GPIO
 GPIO.setwarnings(False)
