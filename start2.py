@@ -19,7 +19,7 @@ recordGps = False
 gps = None
 recordGyro = False
 gyro = None
-File = None
+data = None
 record = False
 
 def record_camera():
@@ -57,26 +57,26 @@ def record_gyro():
 
 def record_data():
     global record
-    global File
-    print(File, id(File))
+    global data
+    print(data, id(data))
     if not record:
         record_camera()
         record_gps()
         record_gyro()
         record = True
     else:
-        File.close()
+        data.close()
 
 def write_data():
     if recordGps:
         pass
     if recordGyro:
-        if File is not None:
-            File.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
+        if data is not None:
+            data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
 def main():
-    File = open("/home/pi/gyro_gps_data.txt", "w")
+    data = open("/home/pi/gyro_gps_data.txt", "w")
     bouton1 = Bouton(23, record_data)
-    print(File, id(File))
+    print(data, id(data))
     while 1:
         write_data()
 
