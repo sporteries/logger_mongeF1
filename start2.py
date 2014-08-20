@@ -24,7 +24,7 @@ record = False
 
 def record_camera():
     pass
-    """global recordCamera
+    global recordCamera
     global camera
     if not recordCamera:
         print("start recording")
@@ -36,7 +36,7 @@ def record_camera():
         print("stop recording")
         camera.stop_recording()
         camera.close()
-        recordCamera = False"""
+        recordCamera = False
 
 def record_gps():
     global recordGps
