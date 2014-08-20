@@ -75,6 +75,7 @@ def write_data():
 def main():
     bouton1 = Bouton(23, record_data)
     File = open("/home/pi/gyro_gps_data.txt", "w")
+    print(File)
     while 1:
         write_data()
 
