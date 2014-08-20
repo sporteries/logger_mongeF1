@@ -20,8 +20,11 @@ gps = None
 recordGyro = False
 gyro = None
 File = None
+record = False
 
 def record_camera():
+    global recordCamera
+    global camera
     if not recordCamera:
         print("start recording")
         camera =  picamera.PiCamera()
@@ -35,12 +38,16 @@ def record_camera():
         recordCamera = False
 
 def record_gps():
+    global recordGps
+    global gps
     if not recordGps:
         rercodGps = True
     else:
         recordGps = False
 
 def record_gyro():
+    global recordGyro
+    global gyro
     if not recordGyro:
         gyro = mpu6050(0x69)
         recordGyro = True
@@ -48,9 +55,14 @@ def record_gyro():
         recordGyro = False
 
 def record_data():
-    record_camera()
-    record_gps()
-    record_gyro()
+    global record
+    if not record:
+        record_camera()
+        record_gps()
+        record_gyro()
+        record = True
+    else
+        File.close()
 
 def write_data():
     if recordGps:
