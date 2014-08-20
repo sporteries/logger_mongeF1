@@ -60,7 +60,7 @@ def record_gyro():
 def record_data():
     global data
     global record
-    print(data, id(data))
+    print("record data", data, id(data))
     if not record:
         record_camera()
         record_gps()
