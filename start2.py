@@ -56,6 +56,7 @@ def record_gyro():
         recordGyro = False
 
 def record_data(data):
+    global data
     global record
     print(data, id(data))
     if not record:
@@ -67,12 +68,14 @@ def record_data(data):
         data.close()
 
 def write_data():
+    global data
     if recordGps:
         pass
     if recordGyro:
         if data is not None:
             data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
 def main():
+    global data
     data = open("/home/pi/gyro_gps_data.txt", "w")
     bouton1 = Bouton(23, record_data, args = (data))
     print(data, id(data))
