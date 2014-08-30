@@ -77,20 +77,17 @@ def write_data():
         gyro_out = gyro.get_gyro_out()
         gyro_accel = gyro.get_accel_out()
         gyro_rot = gyro.get_rotation_x_y()        
-        data.write(str(gyro_out[0]) + 
-                   str(gyro_out[1]) + 
-                   str(gyro_out[2]) + 
-                   "; " +
-                   str(gyro_accel[0]) + 
-                   str(gyro_accel[1]) + 
-                   str(gyro_accel[2]) + 
-                   str(gyro_accel[3]) + 
-                   str(gyro_accel[4]) + 
-                   str(gyro_accel[5]) +   
-                   "; " + 
-                   str(gyro_rot[0]) + 
-                   str(gyro_rot[1]) +
-                   "\n")
+        data.write(str(gyro_out[0]) + " " +
+                   str(gyro_out[1]) + " " +
+                   str(gyro_out[2]) + " ; " +
+                   str(gyro_accel[0]) + " " + 
+                   str(gyro_accel[1]) + " " +
+                   str(gyro_accel[2]) + " " + 
+                   str(gyro_accel[3]) + " " + 
+                   str(gyro_accel[4]) + " " + 
+                   str(gyro_accel[5]) + " ; " + 
+                   str(gyro_rot[0]) + " " + 
+                   str(gyro_rot[1]) + "\n")
 
 def main():
     global data
@@ -107,7 +104,7 @@ def main():
             break
     ledrouge.off()
     ledverte.on()
-    os.system("shutdown -h now")
+    #os.system("shutdown -h now")
     print("exit")
 
 main()
