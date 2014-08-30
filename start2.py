@@ -23,7 +23,7 @@ gps = None
 recordGyro = False
 gyro = None
 data = None
-record = 0
+recordAll = 0
 ledrouge = Led(17)
 ledverte = Led(27)
 
@@ -35,7 +35,7 @@ def record_camera(record):
         camera.resolution = (640, 480)
         camera.start_recording(strftime('/home/pi/video_%H:%M:%S.h264'))
         recordCamera = True
-    else:
+    if record == 1:
         print("stop recording video")
         camera.stop_recording()
         camera.close()
@@ -45,7 +45,7 @@ def record_gps(record):
     global gps
     if record == 0:
         rercodGps = True
-    else:
+    if record == 1:
         print("stop recording gps")        
         recordGps = False
 
@@ -54,35 +54,34 @@ def record_gyro(record):
     if record == 0:
         gyro = mpu6050(0x69)
         recordGyro = True
-    else:
+    if record == 1:
         print("stop recording gyro")        
         recordGyro = False
 
 def record_data():
     global data
-    global record
+    global recordAll
     print("record data", data, id(data))
-    if record == 0:      
-        record_camera(record)
-        record_gps(record)
-        record_gyro(record)
-        record = 1          
-    else:
-        record = 2           
+    if recordAll == 0:      
+        record_camera(0)
+        record_gps(0)
+        record_gyro(0)
+        recordAll = 1          
+    if recordAll == 1:
+        recordAll = 2           
         record_camera(1)
         record_gps(1)
         record_gyro(1)
         data.close()    
 
 def write_data():
-    global data
-    if data is not None:
+    if data.closed():
         print("record gyro",data, id(data))
         data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
 
 def main():
     global data
-    global record
+    global recordAll
     global gyro
     ledverte.on()
     sleep(5)
@@ -91,13 +90,13 @@ def main():
     ledverte.off()
     ledrouge.on()
     while 1:
-        if record == 0:
+        if recordAll == 0:
             pass
-        elif record == 1:
+        elif recordAll == 1:
             if gyro is None:
                 print("gyro is NULL")
             write_data()
-        elif record == 2:
+        elif recordAll == 2:
             break
     ledrouge.off()
     ledverte.on()
