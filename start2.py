@@ -23,13 +23,13 @@ gps = None
 recordGyro = False
 gyro = None
 data = None
-record = False
+record = 0
 ledrouge = Led(17)
 ledverte = Led(27)
 
 def record_camera(record):
     global camera
-    if record:
+    if record == 0:
         print("start recording")
         camera =  picamera.PiCamera()
         camera.resolution = (640, 480)
@@ -43,14 +43,14 @@ def record_camera(record):
 
 def record_gps(record):
     global gps
-    if record:
+    if record == 0:
         rercodGps = True
     else:
         recordGps = False
 
 def record_gyro(record):
     global gyro
-    if record:
+    if record == 0:
         gyro = mpu6050(0x69)
         recordGyro = True
     else:
@@ -60,17 +60,17 @@ def record_data():
     global data
     global record
     print("record data", data, id(data))
-    if not record:
-        record_camera(True)
-        record_gps(True)
-        record_gyro(True)
-        record = True
+    if record == 0:
+        record = 1        
+        record_camera(record)
+        record_gps(record)
+        record_gyro(record)
     else:
-        record_camera(False)
-        record_gps(False)
-        record_gyro(False)
+        record = 2
+        record_camera(record)
+        record_gps(record)
+        record_gyro(record)
         data.close()
-        record = False
 
 def write_data():
     global data
@@ -88,14 +88,14 @@ def main():
     ledverte.off()
     ledrouge.on()
     while 1:
-        if record: 
-		write_data()
-	else:
+        if record == 0 && record == 1: 
+            write_data()
+        else:
             break
-            sleep(0.1)
     ledrouge.off()
     ledverte.on()
-    os.systen("shutdown -h now")
+    #os.system("shutdown -h now")
+    print("exit")
 
 main()
 
