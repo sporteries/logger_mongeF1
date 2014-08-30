@@ -49,6 +49,10 @@ class mpu6050:
     def get_x_rotation(self, x,y,z):
         radians = math.atan2(y, self.dist(x,z))
         return math.degrees(radians)
+    
+    def get_z_rotation(self, x,y,z):
+        radians = math.atan2(z, self.dist(x,y))
+        return math.degrees(radians)    
 
     def get_gyro_out(self):
         gyro_xout = self.read_word_2c(GYRO_XOUT)
@@ -62,9 +66,10 @@ class mpu6050:
         accel_zout = self.read_word_2c(ACCEL_ZOUT)
         return (accel_xout, accel_yout, accel_zout, accel_xout / 16384., accel_yout / 16384., accel_zout / 16384.)
 
-    def get_rotation_x_y(self):
+    def get_rotation_x_y_z(self):
         accel = self.get_accel_out()
-        return (self.get_x_rotation(accel[3], accel[4], accel[5]), self.get_y_rotation(accel[3], accel[4], accel[5]))
+        return (self.get_x_rotation(accel[3], accel[4], accel[5]), self.get_y_rotation(accel[3], accel[4], accel[5]), 
+                self.get_z_rotation(accel[3], accel[4], accel[5]))
 
 
 """37  bus = smbus.SMBus(0) # or bus = smbus.SMBus(1) for Revision 2 boards
