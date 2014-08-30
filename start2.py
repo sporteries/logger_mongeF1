@@ -81,6 +81,7 @@ def write_data():
 def main():
     global data
     global record
+    global gyro
     ledverte.on()
     sleep(5)
     data = open("/home/pi/gyro_gps_data.txt", "w")
@@ -90,7 +91,9 @@ def main():
     while 1:
         if record == 0:
             pass
-        elif record == 1: 
+        elif record == 1:
+            if gyro is None:
+                print("gyro is NULL")
             write_data()
         elif record == 2:
             break
