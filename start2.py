@@ -90,9 +90,7 @@ def main():
     ledverte.off()
     ledrouge.on()
     while 1:
-        if recordAll == 0:
-            pass
-        elif recordAll == 1:
+        if recordAll == 1:
             if gyro is None:
                 print("gyro is NULL")
             write_data()
