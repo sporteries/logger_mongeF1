@@ -27,11 +27,9 @@ record = False
 ledrouge = Led(17)
 ledverte = Led(27)
 
-def record_camera():
-    pass
-    global recordCamera
+def record_camera(record):
     global camera
-    if not recordCamera:
+    if record:
         print("start recording")
         camera =  picamera.PiCamera()
         camera.resolution = (640, 480)
@@ -43,18 +41,16 @@ def record_camera():
         camera.close()
         recordCamera = False
 
-def record_gps():
-    global recordGps
+def record_gps(record):
     global gps
-    if not recordGps:
+    if record:
         rercodGps = True
     else:
         recordGps = False
 
-def record_gyro():
-    global recordGyro
+def record_gyro(record):
     global gyro
-    if not recordGyro:
+    if record:
         gyro = mpu6050(0x69)
         recordGyro = True
     else:
@@ -65,33 +61,26 @@ def record_data():
     global record
     print("record data", data, id(data))
     if not record:
-        record_camera()
-        record_gps()
-        record_gyro()
+        record_camera(True)
+        record_gps(True)
+        record_gyro(True)
         record = True
     else:
-        record_camera()
-        record_gps()
-        record_gyro()
+        record_camera(False)
+        record_gps(False)
+        record_gyro(False)
         data.close()
+        record = False
 
 def write_data():
     global data
-    global recordGps
-    global recordGyro
-    global record
-    if recordGps:
-        pass
-    if recordGyro:
         if data is not None:
             print("record gyro",data, id(data))
             data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
-    if not recordGps and not recordGyro and record:
-        return False
-    return True
 
 def main():
     global data
+    global record
     ledverte.on()
     sleep(5)
     data = open("/home/pi/gyro_gps_data.txt", "w")
@@ -99,7 +88,9 @@ def main():
     ledverte.off()
     ledrouge.on()
     while 1:
-        if not write_data():
+        if record: 
+		write_data():
+	else:
             break
             sleep(0.1)
     ledrouge.off()
