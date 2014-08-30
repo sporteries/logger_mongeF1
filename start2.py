@@ -24,7 +24,7 @@ recordAll = 0
 ledrouge = Led(17)
 ledverte = Led(27)
 
-# record_camera, record_gps et record_gyro prennent pour argument un booléen
+# record_camera, record_gps et record_gyro prennent pour argument un booleen
 # True : on commence l'enregistrement, False : on termine l'enregistrement
 def record_camera(record):
     global camera
@@ -73,7 +73,7 @@ def record_data():
         data.close()    
 
 def write_data():
-    if not data.closed: # si le fichier n'est pas fermé on enregistre
+    if not data.closed: # si le fichier n'est pas ferme on enregistre
         data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
 
 def main():
