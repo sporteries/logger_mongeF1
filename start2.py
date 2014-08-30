@@ -36,7 +36,7 @@ def record_camera(record):
         camera.start_recording(strftime('/home/pi/video_%H:%M:%S.h264'))
         recordCamera = True
     else:
-        print("stop recording")
+        print("stop recording video")
         camera.stop_recording()
         camera.close()
         recordCamera = False
@@ -46,6 +46,7 @@ def record_gps(record):
     if record == 0:
         rercodGps = True
     else:
+        print("stop recording gps")        
         recordGps = False
 
 def record_gyro(record):
@@ -54,6 +55,7 @@ def record_gyro(record):
         gyro = mpu6050(0x69)
         recordGyro = True
     else:
+        print("stop recording gyro")        
         recordGyro = False
 
 def record_data():
@@ -66,11 +68,11 @@ def record_data():
         record_gyro(record)
         record = 1          
     else:
-        record_camera(record)
-        record_gps(record)
-        record_gyro(record)
-        data.close()
-        record = 2       
+        record = 2           
+        record_camera(1)
+        record_gps(1)
+        record_gyro(1)
+        data.close()    
 
 def write_data():
     global data
