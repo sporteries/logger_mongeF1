@@ -88,9 +88,11 @@ def main():
     ledverte.off()
     ledrouge.on()
     while 1:
-        if record == 0 or record == 1: 
+        if record == 0:
+            pass
+        elif record == 1: 
             write_data()
-        else:
+        elif record == 2:
             break
     ledrouge.off()
     ledverte.on()
