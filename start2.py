@@ -16,7 +16,6 @@ import os
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-recordCamera = False
 camera = None
 recordGps = False
 gps = None
@@ -66,7 +65,8 @@ def record_data():
         record_camera(0)
         record_gps(0)
         record_gyro(0)
-        recordAll = 1          
+        recordAll = 1 
+        return
     if recordAll == 1:
         recordAll = 2           
         record_camera(1)
