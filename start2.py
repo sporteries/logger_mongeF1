@@ -74,9 +74,9 @@ def record_data():
 
 def write_data():
     global data
-        if data is not None:
-            print("record gyro",data, id(data))
-            data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
+    if data is not None:
+        print("record gyro",data, id(data))
+        data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
 
 def main():
     global data
