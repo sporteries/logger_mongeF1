@@ -74,7 +74,23 @@ def record_data():
 
 def write_data():
     if not data.closed: # si le fichier n'est pas ferme on enregistre
-        data.write(str(*gyro.get_gyro_out())+"; "+str(*gyro.get_accel_out())+"; "+str(*gyro.get_rotation_x_y()) + "\n")
+        gyro_out = gyro.get_gyro_out()
+        gyro_accel = gyro.get_accel_out()
+        gyro_rot = gyro.get_rotation_x_y()        
+        data.write(str(gyro_out[0]) + 
+                   str(gyro_out[1]) + 
+                   str(gyro_out[2]) + 
+                   "; " +
+                   str(gyro_accel[0]) + 
+                   str(gyro_accel[1]) + 
+                   str(gyro_accel[2]) + 
+                   str(gyro_accel[3]) + 
+                   str(gyro_accel[4]) + 
+                   str(gyro_accel[5]) +   
+                   "; " + 
+                   str(gyro_rot[0]) + 
+                   str(gyro_rot[1]) +
+                   "\n")
 
 def main():
     global data
