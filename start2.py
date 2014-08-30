@@ -89,7 +89,7 @@ def main():
     ledrouge.on()
     while 1:
         if record: 
-		write_data():
+		write_data()
 	else:
             break
             sleep(0.1)
