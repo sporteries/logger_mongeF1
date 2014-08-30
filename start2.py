@@ -88,7 +88,7 @@ def main():
     ledverte.off()
     ledrouge.on()
     while 1:
-        if record == 0 && record == 1: 
+        if record == 0 or record == 1: 
             write_data()
         else:
             break
