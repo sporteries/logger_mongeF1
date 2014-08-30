@@ -75,7 +75,7 @@ def record_data():
         data.close()    
 
 def write_data():
-    if data.closed():
+    if data.closed:
         print("record gyro",data, id(data))
         data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
 
