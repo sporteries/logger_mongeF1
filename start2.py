@@ -17,24 +17,24 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 camera = None
-recordGps = False
 gps = None
-recordGyro = False
 gyro = None
 data = None
 recordAll = 0
 ledrouge = Led(17)
 ledverte = Led(27)
 
+# record_camera, record_gps et record_gyro prennent pour argument un booléen
+# True : on commence l'enregistrement, False : on termine l'enregistrement
 def record_camera(record):
     global camera
-    if record == 0:
+    if record:
         print("start recording")
         camera =  picamera.PiCamera()
         camera.resolution = (640, 480)
         camera.start_recording(strftime('/home/pi/video_%H:%M:%S.h264'))
         recordCamera = True
-    if record == 1:
+    if not record:
         print("stop recording video")
         camera.stop_recording()
         camera.close()
@@ -42,19 +42,17 @@ def record_camera(record):
 
 def record_gps(record):
     global gps
-    if record == 0:
+    if record:
         rercodGps = True
-    if record == 1:
-        print("stop recording gps")        
+    if not record:       
         recordGps = False
 
 def record_gyro(record):
     global gyro
-    if record == 0:
+    if record:
         gyro = mpu6050(0x69)
         recordGyro = True
-    if record == 1:
-        print("stop recording gyro")        
+    if not record:     
         recordGyro = False
 
 def record_data():
@@ -62,29 +60,26 @@ def record_data():
     global recordAll
     print("record data", data, id(data))
     if recordAll == 0:      
-        record_camera(0)
-        record_gps(0)
-        record_gyro(0)
+        record_camera(True)
+        record_gps(True)
+        record_gyro(True)
         recordAll = 1 
         return
     if recordAll == 1:
         recordAll = 2           
-        record_camera(1)
-        record_gps(1)
-        record_gyro(1)
+        record_camera(False)
+        record_gps(False)
+        record_gyro(False)
         data.close()    
 
 def write_data():
-    if not data.closed:
-        print("record gyro",data, id(data))
+    if not data.closed: # si le fichier n'est pas fermé on enregistre
         data.write(str(gyro.get_gyro_out())+"\t"+str(gyro.get_accel_out())+"\t"+str(gyro.get_rotation_x_y()))
 
 def main():
     global data
     global recordAll
-    global gyro
     ledverte.on()
-    sleep(5)
     data = open("/home/pi/gyro_gps_data.txt", "w")
     bouton1 = Bouton(23, record_data)
     ledverte.off()
