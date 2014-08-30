@@ -60,17 +60,17 @@ def record_data():
     global data
     global record
     print("record data", data, id(data))
-    if record == 0:
-        record = 1        
+    if record == 0:      
         record_camera(record)
         record_gps(record)
         record_gyro(record)
+        record = 1          
     else:
-        record = 2
         record_camera(record)
         record_gps(record)
         record_gyro(record)
         data.close()
+        record = 2       
 
 def write_data():
     global data
