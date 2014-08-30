@@ -91,14 +91,12 @@ def main():
     ledrouge.on()
     while 1:
         if recordAll == 1:
-            if gyro is None:
-                print("gyro is NULL")
             write_data()
         elif recordAll == 2:
             break
     ledrouge.off()
     ledverte.on()
-    #os.system("shutdown -h now")
+    os.system("shutdown -h now")
     print("exit")
 
 main()
